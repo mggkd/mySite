@@ -23,7 +23,14 @@ jobs:
       run: npm install
     - name: Run Tests
       run: npm test
-    - name: Upload the artifacts
-      uses: actions/upload-artifact@v3
+    - uses: actions/checkout@v3
+
+    - run: mkdir -p path/to/artifact
+
+    - run: echo hello > path/to/artifact/world.txt
+
+    - uses: actions/upload-artifact@v3
       with:
-        path: ./next
+        name: my-artifact
+        path: path/to/artifact/world.txt
+
